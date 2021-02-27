@@ -6,6 +6,8 @@
   font-family: "Barlow Semi Condensed", sans-serif;
   font-weight: 600;
   color: #fff;
+  text-transform: uppercase;
+  outline: none;
 }
 
 body {
@@ -15,6 +17,15 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding-top: 50px;
+}
+@media (max-width: 640px) {
+  body {
+    min-height: max(100vh, 600px);
+  }
+}
+
+.hidden {
+  display: none !important;
 }
 
 .wrapper {
@@ -27,7 +38,7 @@ body {
   align-self: center;
 }
 .header .header__inner {
-  width: 600px;
+  width: 540px;
   padding: 20px;
   border-radius: 12px;
   border: 2px solid #606e85;
@@ -43,7 +54,7 @@ body {
   border-radius: 12px;
 }
 .header .score__title {
-  color: #0077b6;
+  color: #2a46c0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -52,10 +63,43 @@ body {
   font-size: 50px;
   font-weight: 700;
 }
+@media (max-width: 640px) {
+  .header {
+    padding: 0 30px;
+    width: 100%;
+  }
+  .header .header__inner {
+    width: 100%;
+    padding: 10px 10px 10px 20px;
+  }
+  .header .header__logo-box {
+    display: flex;
+    align-items: center;
+  }
+  .header .header__logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header .score {
+    border-radius: 7px;
+    padding: 10px 20px;
+  }
+  .header .score__title {
+    font-size: 12px;
+  }
+  .header .score__value {
+    font-size: 35px;
+  }
+}
 
 .main {
   margin-top: 40px;
   flex: 1 1 auto;
+  display: flex;
+}
+.main .wrapper {
+  width: 100%;
 }
 .main .main__game-field {
   display: flex;
@@ -86,6 +130,85 @@ body {
 .main .main__game-start .paper-box {
   right: -50%;
 }
+.main .main__game-play {
+  display: flex;
+  transition: width 1s ease;
+}
+.main .main__game-play h3 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.main .main__game-play .game-variant-box {
+  position: relative;
+}
+.main .main__game-play .main__game-player-box {
+  margin-right: 30px;
+}
+.main .main__game-play .main__game-house-box {
+  margin-left: 30px;
+}
+.main .main__game-play .main__game-result {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 1.5s ease;
+  width: 160px;
+}
+.main .main__game-play .main__game-result.disabled {
+  transform: scale(0);
+  width: 0;
+}
+.main .main__game-play .main__game-result .main__game-result-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+.main .main__game-play .main__game-result .main__game-restart {
+  width: 100%;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 0;
+  background-color: #fff;
+  color: #3b4363;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.main .main__game-play .main__game-player-box,
+.main .main__game-play .main__game-house-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+  transition: width 1s ease;
+}
+.main .main__game-play .game-variant-box {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  box-shadow: 0px -6px 0px 0px rgba(0, 0, 0, 0.3) inset;
+}
+.main .main__game-play .game-variant-box.winner .game-icon {
+  position: relative;
+}
+.main .main__game-play .game-variant-box.winner .game-icon:after, .main .main__game-play .game-variant-box.winner .game-icon:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: pulse linear 2s infinite;
+  z-index: -1;
+}
+.main .main__game-play .game-variant-box.winner .game-icon:before {
+  animation-delay: 1s;
+}
 .main .main__rules-box {
   position: absolute;
   right: 20px;
@@ -98,14 +221,115 @@ body {
 .main .main__rules-box span {
   display: block;
   text-transform: uppercase;
+  letter-spacing: 3px;
+}
+@media (max-width: 640px) {
+  .main {
+    margin-top: 70px;
+  }
+  .main .main__rules-box {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .main .main__game-play {
+    display: grid;
+    grid-template: auto auto/1fr 1fr;
+    place-items: center;
+  }
+  .main .main__game-play .game-variant-box {
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+  }
+  .main .main__game-play .main__game-player-box, .main .main__game-play .main__game-house-box {
+    flex-direction: column-reverse;
+  }
+  .main .main__game-play .main__game-player-box h3, .main .main__game-play .main__game-house-box h3 {
+    margin: 30px 0 0 0;
+  }
+  .main .main__game-play .main__game-result {
+    grid-row: 2/3;
+    grid-column: 1/3;
+    margin-top: 30px;
+  }
 }
 
-.footer .wrapper {
-  display: flex;
+.rules .modal__inner {
+  padding: 30px 20px;
+  display: grid;
+  grid-template: auto auto/1fr 1fr;
+  grid-row-gap: 25px;
 }
-.footer .wrapper img {
-  width: 70px;
-  height: 70px;
+.rules .rules__image {
+  width: 100%;
+  object-fit: contain;
+  grid-column: 1/3;
+  align-self: end;
+}
+@media (max-width: 640px) {
+  .rules .modal__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .rules .modal__title {
+    order: -2;
+  }
+  .rules .rules__image {
+    max-width: 350px;
+    align-self: auto;
+    order: -1;
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal.opened {
+  opacity: 1;
+  visibility: visible;
+}
+.modal .modal__inner {
+  position: absolute;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+.modal .modal__title {
+  color: #3b4363;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.modal .modal__close {
+  height: 20px;
+  width: 20px;
+  background: center/contain no-repeat url("../images/icon-close.svg");
+  justify-self: end;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .modal .modal__inner {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: none;
+    width: auto;
+    border-radius: 0;
+  }
 }
 
 .game-variant-box {
@@ -116,6 +340,12 @@ body {
   padding: 10px;
   cursor: pointer;
   box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.3) inset;
+}
+@media (max-width: 640px) {
+  .game-variant-box {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .game-icon {
@@ -167,4 +397,13 @@ body {
 
 .lizard-icon {
   background-image: url("../images/icon-lizard.svg");
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 100px rgba(255, 255, 255, 0);
+  }
 }

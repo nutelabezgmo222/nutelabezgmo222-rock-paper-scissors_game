@@ -17,7 +17,7 @@
         </div>
         <div class="score">
           <p class="score__title">score</p>
-          <p class="score__value">12</p>
+          <p class="score__value"></p>
         </div>
       </div>
     </div>
@@ -26,24 +26,39 @@
     <div class="wrapper">
       <div class="main__game-field">
         <div class="main__game-start">
-          <div class="scissors-box game-variant-box">
+          <div data-choice="scissors" class="scissors-box game-variant-box">
             <span class="scissors-icon game-icon"></span>
           </div>
-          <div class="spock-box game-variant-box">
+          <div data-choice="spock" class="spock-box game-variant-box">
             <span class="spock-icon game-icon"></span>
           </div>
-          <div class="paper-box game-variant-box">
+          <div data-choice="paper" class="paper-box game-variant-box">
             <span class="paper-icon game-icon"></span>
           </div>
-          <div class="lizard-box game-variant-box">
+          <div data-choice="lizard" class="lizard-box game-variant-box">
             <span class="lizard-icon game-icon"></span>
           </div>
-          <div class="rock-box game-variant-box">
+          <div data-choice="rock" class="rock-box game-variant-box">
             <span class="rock-icon game-icon"></span>
           </div>
         </div>
-        <div class="main__game-play">
-
+        <div class="main__game-play hidden">
+          <div class="main__game-player-box">
+            <h3>You picked</h3>
+            <div class="main__game-player-pick game-variant-box">
+              <span class="game-icon"></span>
+            </div>
+          </div>
+          <div class="main__game-result disabled">
+            <p class="main__game-result-title"></p>
+            <button class="main__game-restart" type="button" name="button">Play again</button>
+          </div>
+          <div class="main__game-house-box">
+            <h3>The house picked</h3>
+            <div class="main__game-house-pick game-variant-box">
+              <span class="game-icon"></span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="main__rules-box">
@@ -51,8 +66,15 @@
       </div>
     </div>
   </main>
+  <div class="modal rules">
+    <div class="modal__inner">
+      <span class="modal__title">rules</span>
+      <span class="modal__close"></span>
+      <img class="rules__image" src="./images/image-rules-bonus.svg" alt="rules">
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./js/main.js">
-
   </script>
 </body>
 </html>
