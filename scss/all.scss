@@ -14,11 +14,8 @@ body {
   background: radial-gradient(circle, hsl(214, 47%, 23%) 10%, hsl(237, 49%, 15%) 97%);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: max(100vh, 600px);
   padding-top: 50px;
-  @media(max-width: 640px) {
-    min-height: max(100vh, 565px);
-  }
 }
 .hidden {
   display: none!important;
